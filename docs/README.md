@@ -287,6 +287,10 @@ Person p = new Student();
 todo
 
 
+https://github.com/ningg/SpringLearn/wiki/Java%E5%8F%8D%E5%B0%84%E7%9F%A5%E8%AF%86%EF%BC%9ASpring-IoC
+
+http://www.iteye.com/topic/1123081
+
 
 
 
