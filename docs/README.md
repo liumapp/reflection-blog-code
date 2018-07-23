@@ -137,64 +137,91 @@ Person p = new Student();
         }
     }
 
-<<<<<<<<<<<<<<<<使用反射<<<<<<<<<<<<<<<<<<<
-package reflection;
+使用案例：
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
-/*
- * 通过用户输入类的全路径，来获取该类的成员方法和属性
- * Declared获取全部不管是私有和公有
- * 1.获取访问类的Class对象
- * 2.调用Class对象的方法返回访问类的方法和属性信息
- */
-public class Test {
-
-    public static void main(String[] args) {
-        try {
-            //获取Person类的Class对象
-            Class clazz=Class.forName("reflection.Person");
-
-            //获取Person类的所有方法信息
-            Method[] method=clazz.getDeclaredMethods();
-            for(Method m:method){
-                System.out.println(m.toString());
+    public class PersonTest extends TestCase {
+    
+        private Logger logger = LoggerFactory.getLogger(PersonTest.class);
+    
+        public void testReflection () {
+            try {
+                Class clazz = Class.forName(Person.class.getName());
+                Method[] methods = clazz.getDeclaredMethods();
+    
+                for (Method m: methods) {
+                    logger.info("out put clazz methods : ");
+                    logger.info(m.toString());
+                    logger.info("\n");
+                }
+    
+                Field[] fields = clazz.getDeclaredFields();
+                for (Field f: fields) {
+                    logger.info("out put clazz fields : ");
+                    logger.info(f.toString());
+                    logger.info("\n");
+                }
+    
+                Constructor[] constructors = clazz.getDeclaredConstructors();
+                for (Constructor c: constructors) {
+                    logger.info("out put clazz constructors : ");
+                    logger.info(c.toString());
+                    logger.info("\n");
+                }
+    
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
-
-            //获取Person类的所有成员属性信息
-            Field[] field=clazz.getDeclaredFields();
-            for(Field f:field){
-                System.out.println(f.toString());
-            }
-
-            //获取Person类的所有构造方法信息
-            Constructor[] constructor=clazz.getDeclaredConstructors();
-            for(Constructor c:constructor){
-                System.out.println(c.toString());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+    
     }
 
-}
-
 输出结果：
+    
+    15:03:11.773 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz methods : 
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public java.lang.String com.liumapp.blog.reflection.demo.Person.toString()
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz methods : 
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public java.lang.String com.liumapp.blog.reflection.demo.Person.getName()
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz methods : 
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public void com.liumapp.blog.reflection.demo.Person.setName(java.lang.String)
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz methods : 
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public java.lang.Integer com.liumapp.blog.reflection.demo.Person.getAge()
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz methods : 
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public void com.liumapp.blog.reflection.demo.Person.setAge(java.lang.Integer)
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz methods : 
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public java.lang.String com.liumapp.blog.reflection.demo.Person.getSex()
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz methods : 
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public void com.liumapp.blog.reflection.demo.Person.setSex(java.lang.String)
+    15:03:11.778 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.779 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz fields : 
+    15:03:11.779 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - private java.lang.String com.liumapp.blog.reflection.demo.Person.name
+    15:03:11.780 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.780 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz fields : 
+    15:03:11.780 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - private java.lang.Integer com.liumapp.blog.reflection.demo.Person.age
+    15:03:11.780 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.780 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz fields : 
+    15:03:11.780 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - private java.lang.String com.liumapp.blog.reflection.demo.Person.sex
+    15:03:11.780 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.780 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz constructors : 
+    15:03:11.783 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public com.liumapp.blog.reflection.demo.Person()
+    15:03:11.784 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
+    
+    15:03:11.784 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - out put clazz constructors : 
+    15:03:11.784 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public com.liumapp.blog.reflection.demo.Person(java.lang.String,java.lang.Integer,java.lang.String)
+    15:03:11.784 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
 
-方法信息： 
-public java.lang.String reflection.Person.toString() 
-private java.lang.String reflection.Person.getName() 
-private void reflection.Person.setName(java.lang.String) 
-public void reflection.Person.setAge(int) 
-public int reflection.Person.getAge() 
-public java.lang.String reflection.Person.getGender() 
-public void reflection.Person.setGender(java.lang.String) 
-属性信息： 
-private java.lang.String reflection.Person.name 
-private java.lang.String reflection.Person.gender 
-private int reflection.Person.age 
-构造方法信息 
-private reflection.Person() 
-public reflection.Person(java.lang.String,java.lang.String,int)
