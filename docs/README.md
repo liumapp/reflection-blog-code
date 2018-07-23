@@ -225,3 +225,52 @@ Person p = new Student();
     15:03:11.784 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - public com.liumapp.blog.reflection.demo.Person(java.lang.String,java.lang.Integer,java.lang.String)
     15:03:11.784 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - 
 
+#### 1.2.4 创建对象
+
+当我们获取到所需类的Class对象后，可以用它来创建对象，创建对象的方法有两种：
+
+使用Class对象的newInstance()方法来创建该Class对象对应类的实例
+
+但是这种方法要求该Class对象对应的类有默认的空构造器
+
+另一种方法是先使用Class对象获取指定的Constructor对象
+
+再调用Constructor对象的newInstance()方法来创建Class对象对应类的实例,通过这种方法可以选定构造方法创建实例
+
+示例代码：
+
+package reflection;
+
+import java.lang.reflect.Constructor;
+public class Demo01 {
+
+    public static void main(String[] args) {
+        try {
+            //获取Person类的Class对象
+            Class clazz=Class.forName("reflection.Person"); 
+            /**
+             * 第一种方法创建对象
+             */
+            //创建对象
+            Person p=(Person) clazz.newInstance();
+            //设置属性
+            p.setName("张三");
+            p.setAge(16);
+            p.setGender("男");
+            System.out.println(p.toString());
+
+            /**
+             * 第二种方法创建
+             */
+            //获取构造方法
+            Constructor c=clazz.getDeclaredConstructor(String.class,String.class,int.class);
+            //创建对象并设置属性
+            Person p1=(Person) c.newInstance("李四","男",20);
+            System.out.println(p1.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+}

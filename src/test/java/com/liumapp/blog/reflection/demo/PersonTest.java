@@ -19,7 +19,10 @@ public class PersonTest extends TestCase {
 
     private Logger logger = LoggerFactory.getLogger(PersonTest.class);
 
-    public void testReflection () {
+    /**
+     * 获取类的方法、字段和构造器
+     */
+    public void testBasicReflection () {
         try {
             Class clazz = Class.forName(Person.class.getName());
             Method[] methods = clazz.getDeclaredMethods();
@@ -44,6 +47,15 @@ public class PersonTest extends TestCase {
                 logger.info("\n");
             }
 
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void testCreateObject () {
+        try {
+            Class clazz = Class.forName(Person.class.getName());
+            
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
