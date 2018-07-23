@@ -2,6 +2,8 @@ package com.liumapp.blog.reflection.demo;
 
 import junit.framework.TestCase;
 
+import java.lang.reflect.Method;
+
 /**
  * @author liumapp
  * @file PersonTest.java
@@ -11,8 +13,17 @@ import junit.framework.TestCase;
  */
 public class PersonTest extends TestCase {
 
-    public void testReflection () {
+//    private Logger
 
+    public void testReflection () {
+        try {
+            Class clazz = Class.forName(Person.class.getName());
+            Method[] methods = clazz.getDeclaredMethods();
+            for (Method m: methods) {
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }
