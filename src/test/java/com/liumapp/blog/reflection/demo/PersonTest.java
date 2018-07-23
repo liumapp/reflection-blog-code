@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
@@ -54,9 +55,28 @@ public class PersonTest extends TestCase {
 
     public void testCreateObject () {
         try {
+            // the first way
             Class clazz = Class.forName(Person.class.getName());
-            
+            Person p = (Person) clazz.newInstance();
+            p.setName("zhangsan");
+            p.setAge(18);
+            p.setSex("boy");
+            logger.info(p.toString());
+
+            // the second way
+            Constructor c = clazz.getDeclaredConstructor(String.class, Integer.class, String.class);
+            Person p1 = (Person) c.newInstance("lisi", 19, "boy");
+            logger.info(p1.toString());
+
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
     }
