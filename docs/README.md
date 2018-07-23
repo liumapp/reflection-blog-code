@@ -86,47 +86,56 @@ Person p = new Student();
 当我们获得了想要操作的类的Class对象后，可以通过Class类中的方法获取并查看该类中的方法和属性
 示例代码：
 
-<<<<<<<<<<<<<<<<<<<<<<Person类<<<<<<<<<<<<<<<<<<<<<<<<<<
-package reflection;
-
-public class Person {
-    private String name;
-    private String gender;
-    private int age;
-
-    public Person() {
-
+    public class Person {
+    
+        private String name;
+    
+        private Integer age;
+    
+        private String sex;
+    
+        public Person() {
+        }
+    
+        public Person(String name, Integer age, String sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+    
+        public String getName() {
+            return name;
+        }
+    
+        public void setName(String name) {
+            this.name = name;
+        }
+    
+        public Integer getAge() {
+            return age;
+        }
+    
+        public void setAge(Integer age) {
+            this.age = age;
+        }
+    
+        public String getSex() {
+            return sex;
+        }
+    
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+    
+        @Override
+        public String toString() {
+            return "Person{" +
+                    "name='" + name + '\'' +
+                    ", age=" + age +
+                    ", sex='" + sex + '\'' +
+                    '}';
+        }
     }
-    public Person(String name, String gender, int age) {
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-    }
-    //getter和setter方法
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getGender() {
-        return gender;
-    }
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String toString(){
-        return "姓名:"+name+"  性别:"+gender+"  年龄:"+age;
-    }
-
-}
 
 <<<<<<<<<<<<<<<<使用反射<<<<<<<<<<<<<<<<<<<
 package reflection;

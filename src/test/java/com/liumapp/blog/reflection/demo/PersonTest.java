@@ -10,4 +10,9 @@ import junit.framework.TestCase;
  * @date 7/23/18
  */
 public class PersonTest extends TestCase {
+
+    public void testReflection () {
+
+    }
+
 }
