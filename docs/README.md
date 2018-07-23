@@ -2,7 +2,15 @@
 
 ### 1.1 定义
 
-反射机制是Java动态性之一，而说到动态性首先得了解动态语言
+Java语言允许通过程序化的方式间接对Class进行操作
+
+Class文件由类装载器装载后，在JVM中将形成一份描述Class结构的元信息对象
+
+通过该元信息对象可以获知Class的结构信息：如构造函数、属性和方法等
+
+Java允许用户借由这个Class相关的元信息对象间接调用Class对象的功能，这就为使用程序化方式操作Class对象开辟了途径
+
+这也是Java动态性之一，而说到动态性首先得了解动态语言
 
 #### 1.1.1 动态语言
 
@@ -270,4 +278,16 @@ Person p = new Student();
 输出结果：
     
     15:35:50.925 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - Person{name='zhangsan', age=18, sex='boy'}
-    15:35:50.929 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - Person{name='lisi', age=19, sex='boy'}    
+    15:35:50.929 [main] INFO com.liumapp.blog.reflection.demo.PersonTest - Person{name='lisi', age=19, sex='boy'}
+    
+## 2. 进阶
+
+以Spring的依赖注入IOC为例，我们用Java反射简单实现一遍
+
+todo
+
+
+
+
+
+        
