@@ -83,3 +83,109 @@ Person p = new Student();
 
 #### 1.2.3 获取方法和属性信息
 
+当我们获得了想要操作的类的Class对象后，可以通过Class类中的方法获取并查看该类中的方法和属性
+示例代码：
+
+<<<<<<<<<<<<<<<<<<<<<<Person类<<<<<<<<<<<<<<<<<<<<<<<<<<
+package reflection;
+
+public class Person {
+    private String name;
+    private String gender;
+    private int age;
+
+    public Person() {
+
+    }
+    public Person(String name, String gender, int age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+    }
+    //getter和setter方法
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getGender() {
+        return gender;
+    }
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String toString(){
+        return "姓名:"+name+"  性别:"+gender+"  年龄:"+age;
+    }
+
+}
+
+<<<<<<<<<<<<<<<<使用反射<<<<<<<<<<<<<<<<<<<
+package reflection;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+/*
+ * 通过用户输入类的全路径，来获取该类的成员方法和属性
+ * Declared获取全部不管是私有和公有
+ * 1.获取访问类的Class对象
+ * 2.调用Class对象的方法返回访问类的方法和属性信息
+ */
+public class Test {
+
+    public static void main(String[] args) {
+        try {
+            //获取Person类的Class对象
+            Class clazz=Class.forName("reflection.Person");
+
+            //获取Person类的所有方法信息
+            Method[] method=clazz.getDeclaredMethods();
+            for(Method m:method){
+                System.out.println(m.toString());
+            }
+
+            //获取Person类的所有成员属性信息
+            Field[] field=clazz.getDeclaredFields();
+            for(Field f:field){
+                System.out.println(f.toString());
+            }
+
+            //获取Person类的所有构造方法信息
+            Constructor[] constructor=clazz.getDeclaredConstructors();
+            for(Constructor c:constructor){
+                System.out.println(c.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+输出结果：
+
+方法信息： 
+public java.lang.String reflection.Person.toString() 
+private java.lang.String reflection.Person.getName() 
+private void reflection.Person.setName(java.lang.String) 
+public void reflection.Person.setAge(int) 
+public int reflection.Person.getAge() 
+public java.lang.String reflection.Person.getGender() 
+public void reflection.Person.setGender(java.lang.String) 
+属性信息： 
+private java.lang.String reflection.Person.name 
+private java.lang.String reflection.Person.gender 
+private int reflection.Person.age 
+构造方法信息 
+private reflection.Person() 
+public reflection.Person(java.lang.String,java.lang.String,int)
